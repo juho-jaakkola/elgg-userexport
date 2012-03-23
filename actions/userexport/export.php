@@ -31,7 +31,7 @@ if ($users) {
 	foreach($users as $user) {
 		// Arrange user metadata to an array
 		foreach ($header as $field) {
-			if ($field === 'admin') {
+			if ($field === 'is_admin') {
 				$userRow[$field] = $user->isAdmin();
 				continue;
 			}

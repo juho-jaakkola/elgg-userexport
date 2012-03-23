@@ -7,7 +7,7 @@ $finnish = array(
 	'userexport:type:csv'  =>  "csv",
 	'userexport:type:excel'  =>  "xsl",
 	'userexport:file:generate'  =>  "Generoi tiedosto",
-	'admin' => 'Ylläpito-oikeudet',
+	'is_admin' => 'Ylläpito-oikeudet',
 	
 	// Error messages
 	'userexport:error:nofields' => 'Valitse vähintään yksi vietävä tieto!',
