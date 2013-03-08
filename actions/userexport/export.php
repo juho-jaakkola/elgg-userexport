@@ -34,6 +34,10 @@ foreach ($fields as $title) {
 // Column heading are on first row so continue from the second one
 $row = 2;
 
+// Include also hidden users
+$hidden_status = access_get_show_hidden_status();
+access_show_hidden_entities(true);
+
 // Ignore access settings to get all users
 elgg_set_ignore_access(true);
 $batch = new ElggBatch('elgg_get_entities',	array('type' => 'user', 'limit' => false));
@@ -61,6 +65,9 @@ foreach ($batch as $user) {
 
 // Set access level to normal
 elgg_set_ignore_access(false);
+
+// Set hidden status to normal
+access_show_hidden_entities($hidden_status);
 
 // Find out the type of the export file
 if ($filetype == 'excel') {
@@ -95,8 +102,8 @@ header("Pragma: public");
 header("Content-type: application/octet-stream");
 header("Content-Disposition: attachment; filename=\"$filename\"");
 
-// allow downloads of large files.
-// see http://trac.elgg.org/ticket/1932
+// Allow downloads of large files.
+// See https://github.com/Elgg/Elgg/issues/1932
 ob_clean();
 flush();
 readfile($filepath);
