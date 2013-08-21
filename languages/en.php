@@ -8,7 +8,8 @@ $english = array(
 	'userexport:type:excel'  =>  "xsl",
 	'userexport:file:generate'  =>  "Generate",
 	'is_admin' => 'Administrator',
-	
+	'guid' => 'GUID',
+
 	// Error messages
 	'userexport:error:nofields' => 'Select at least one field!',
 	'userexport:error:nofiledir' => 'Userexport directory is missing from dataroot. Creating a new directorty failed. Check directory permissions.',

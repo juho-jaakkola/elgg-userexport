@@ -11,9 +11,18 @@ $fields = array(
 	'description',
 );
 
+// Allow plugins to add new fields
+$fields = elgg_trigger_plugin_hook('fields', 'userexport', array(), $fields);
+
 $options = array();
 foreach($fields as $field) {
-	$options[elgg_echo($field)] = $field;
+	$fieldname = elgg_echo($field);
+	if ($field == $fieldname) {
+		// No translation was found. Try a different one.
+		$fieldname = elgg_echo("profile:$field");
+	}
+
+	$options[$fieldname] = $field;
 }
 
 $form_body = '';

@@ -17,6 +17,9 @@ if (empty($fields)) {
 	forward(REFERER);
 }
 
+// Allow other plugins to add their own column headers
+$headings = elgg_trigger_plugin_hook('row:headers', 'userexport', array(), $fields);
+
 $phpExcel = new PHPExcel();
 $phpExcel->setActiveSheetIndex(0);
 $phpExcel->getDefaultStyle()->getFont()->setName('Arial');
@@ -25,8 +28,14 @@ $row = 1;
 $col = 0;
 
 // Use the user field names as column headers
-foreach ($fields as $title) {
-	$phpExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, elgg_echo($title));
+foreach ($headings as $heading) {
+	$title = elgg_echo("profile:{$heading}");
+	if ($title == "profile:{$heading}") {
+		// No translation was found. Fall back to the original string.
+		$title = elgg_echo($heading);
+	}
+
+	$phpExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $title);
     $phpExcel->getActiveSheet()->getColumnDimensionByColumn($col)->setAutoSize(true);
 	$col++;
 }
@@ -60,6 +69,17 @@ foreach ($batch as $user) {
 
 		$col++;
 	}
+
+	$params['entity'] = $user;
+
+	// Allow other plugins to add their own fields
+	$values = elgg_trigger_plugin_hook('row:values', 'userexport', $params, array());
+	foreach ($values as $value) {
+		$phpExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
+		$phpExcel->getActiveSheet()->getColumnDimensionByColumn($col)->setAutoSize(true);
+		$col++;
+	}
+
 	$row++;
 }
 

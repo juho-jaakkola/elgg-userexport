@@ -8,7 +8,8 @@ $finnish = array(
 	'userexport:type:excel'  =>  "xsl",
 	'userexport:file:generate'  =>  "Generoi tiedosto",
 	'is_admin' => 'Ylläpito-oikeudet',
-	
+	'guid' => 'GUID',
+
 	// Error messages
 	'userexport:error:nofields' => 'Valitse vähintään yksi vietävä tieto!',
 	'userexport:error:nofiledir' => 'Userexport-hakemisto puuttuu Elggin datahakemistosta. Hakemisto koitettiin luoda, mutta luominen epäonnistui. Tarkista hakemiston tiedosto-oikeudet.',
