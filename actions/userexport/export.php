@@ -57,11 +57,16 @@ foreach ($batch as $user) {
 
 	// Create a new cell for each piece of data
 	foreach ($fields as $field) {
-		if (is_array($user->$field)) {
-			// Concatenate fields with multiple values into a single string
-			$value = implode("|", $user->$field);
+		// Check this first to prevent deprecation warnings about admin metadata
+		if ($field == 'admin') {
+			$value = $user->isAdmin();
 		} else {
-			$value = $user->$field;
+			if (is_array($user->$field)) {
+				// Concatenate fields with multiple values into a single string
+				$value = implode("|", $user->$field);
+			} else {
+				$value = $user->$field;
+			}
 		}
 
 		$phpExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
