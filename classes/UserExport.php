@@ -37,7 +37,7 @@ class UserExport {
 	 * Set default values
 	 */
 	public function __construct() {
-		$this->limit = 10;
+		$this->limit = 50;
 		$this->filedir = elgg_get_data_path() . 'userexport';
 		$this->filename = $this->filedir . "/export.csv";
 		$this->usercount = 0; 
@@ -92,7 +92,10 @@ class UserExport {
 		}
 
 		// Parameters for the plugin hook
-		$params = array('entity' => $user);
+		$params = array(
+			'entity' => $user,
+			'fields' => $this->fields,
+		);
 
 		// Allow other plugins to add their own fields
 		$values = elgg_trigger_plugin_hook('row:values', 'userexport', $params, $values);
