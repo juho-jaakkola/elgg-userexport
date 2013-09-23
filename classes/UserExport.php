@@ -77,17 +77,30 @@ class UserExport {
 	private function userToArray($user) {
 		$values = array();
 		foreach ($this->fields as $field) {
-			// Check this first to prevent deprecation warnings about admin metadata
-			if ($field == 'admin') {
-				$value = $user->isAdmin();
-			} else {
-				if (is_array($user->$field)) {
-					// Concatenate fields with multiple values into a single string
-					$value = implode(", ", $user->$field);
-				} else {
-					$value = $user->$field;
-				}
+			switch ($field) {
+				case 'admin':
+					// Checking admin from metadata causes a deprecation warning
+					$value = $user->isAdmin();
+					break;
+				case 'days_of_last_login':
+					// Count the days from last login
+					if ((int) $user->last_login > 0) {
+						$seconds = time() - (int) $user->last_login;
+						$value = round($seconds / 60 / 60 / 24);
+					} else {
+						$value = elgg_echo('never');
+					}
+					break;
+				default:
+					if (is_array($user->$field)) {
+						// Concatenate fields with multiple values into a single string
+						$value = implode(", ", $user->$field);
+					} else {
+						$value = $user->$field;
+					}
+				break;
 			}
+
 			$values[$field] = $value;
 		}
 

@@ -10,6 +10,8 @@ $finnish = array(
 	'guid' => 'GUID',
 	'download' => 'Lataa',
 	'profile:language' => 'Kieli',
+	'profile:days_of_last_login' => 'Viime kirjautuminen (päivinä)',
+	'never' => 'Ei koskaan',
 
 	// Error messages
 	'userexport:error:nofields' => 'Valitse vähintään yksi kenttä!',

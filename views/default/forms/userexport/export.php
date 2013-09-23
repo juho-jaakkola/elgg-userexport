@@ -10,6 +10,7 @@ $fields = array(
 	'admin',
 	'description',
 	'interests',
+	'days_of_last_login',
 );
 
 // Allow plugins to add new fields

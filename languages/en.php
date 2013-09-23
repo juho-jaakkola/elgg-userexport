@@ -10,6 +10,8 @@ $english = array(
 	'guid' => 'GUID',
 	'download' => 'Download',
 	'profile:language' => 'Language',
+	'profile:days_of_last_login' => 'Days of last login',
+	'never' => 'Never',
 
 	// Error messages
 	'userexport:error:nofields' => 'Select at least one field!',
