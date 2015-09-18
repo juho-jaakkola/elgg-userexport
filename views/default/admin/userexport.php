@@ -3,8 +3,7 @@
  * Display a page for generating a csv file of user data
  */
 
-elgg_load_js('elgg.progressbar');
-elgg_load_js('elgg.userexport');
+elgg_require_js('userexport/generate');
 
 $hidden_status = access_get_show_hidden_status();
 access_show_hidden_entities(true);
