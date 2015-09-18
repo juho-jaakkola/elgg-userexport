@@ -1,0 +1,13 @@
+{
+	"name": "juho-jaakkola/userexport",
+	"description": "Exports users to a CSV file",
+	"type": "elgg-plugin",
+	"license": "GPL-2.0",
+	"authors": [
+		{
+			"name": "Juho Jaakkola",
+			"email": "juho.a.jaakkola@gmail.com",
+			"role": "Developer"
+		}
+	]
+}
